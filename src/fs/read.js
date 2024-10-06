@@ -1,9 +1,12 @@
 import { readFile } from 'node:fs';
-import path from 'path';
-const __dirname = import.meta.dirname;
+import { join, dirname } from 'node:path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const read = async () => {
-  const filePath = path.join(__dirname, '/files/fileToRead.txt');
+  const filePath = join(__dirname, '/files/fileToRead.txt');
 
   readFile(filePath, 'utf8', (err, data) => {
     if (err) {

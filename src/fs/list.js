@@ -1,9 +1,12 @@
 import { readdir } from 'node:fs';
-import path from 'path';
-const __dirname = import.meta.dirname;
+import { join, dirname } from 'node:path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const list = async () => {
-  const filePath = path.join(__dirname, '/files');
+  const filePath = join(__dirname, '/files');
 
   readdir(filePath, { withFileTypes: true }, (err, files) => {
     if (err) {

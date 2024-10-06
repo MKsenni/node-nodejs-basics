@@ -1,9 +1,12 @@
 import { appendFile, access } from 'node:fs';
-import path from 'path';
-const __dirname = import.meta.dirname;
+import { join, dirname } from 'node:path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const create = async () => {
-  const filePath = path.join(__dirname, '/files/file.txt');
+  const filePath = join(__dirname, '/files/file.txt');
   access(filePath, (err) => {
     if (err) {
       if (err.code === 'ENOENT') {

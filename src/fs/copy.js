@@ -1,10 +1,13 @@
 import { copyFile, constants, mkdir, readdir, access } from 'node:fs';
-import path from 'path';
-const __dirname = import.meta.dirname;
+import { join, dirname } from 'node:path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const copy = async () => {
-  const filesPath = path.join(__dirname, '/files');
-  const filesCopyPath = path.join(__dirname, '/files_copy');
+  const filesPath = join(__dirname, '/files');
+  const filesCopyPath = join(__dirname, '/files_copy');
 
   access(filesPath, (err) => {
     if (err.code === 'ENOENT') {
